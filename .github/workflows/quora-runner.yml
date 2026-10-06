@@ -27,4 +27,5 @@ jobs:
       - name: Run Puppeteer
         env:
           BROWSER_WS: ${{ inputs.browser_ws }}
+          BROWSERLESS_TOKEN: ${{ secrets.BROWSERLESS_TOKEN }}
         run: node runner.js
