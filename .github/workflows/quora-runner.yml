@@ -1,0 +1,30 @@
+name: FABTEXS Quora Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      browser_ws:
+        description: "Browserless browserWSEndpoint"
+        required: true
+        type: string
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Puppeteer
+        env:
+          BROWSER_WS: ${{ inputs.browser_ws }}
+        run: node runner.js
